@@ -3,146 +3,224 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INBOX INC. — Operations</title>
+<title>INBOX INC. — Trading Dashboard</title>
+<meta http-equiv="refresh" content="900">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #0a0a0a;
     color: #e0e0e0;
     font-family: 'Courier New', monospace;
-    font-size: 18px;
-    line-height: 1.6;
-    padding: 30px;
-    max-width: 900px;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 20px;
+    max-width: 1100px;
     margin: 0 auto;
   }
-  h1 { color: #00ff88; font-size: 28px; margin-bottom: 5px; }
-  h2 { color: #00aaff; font-size: 22px; margin: 30px 0 15px 0; border-bottom: 1px solid #333; padding-bottom: 5px; }
-  .subtitle { color: #888; font-size: 16px; margin-bottom: 30px; }
-  table { width: 100%; border-collapse: collapse; margin: 10px 0; }
-  th { text-align: left; color: #00ff88; padding: 8px 12px; border-bottom: 2px solid #333; font-size: 16px; }
-  td { padding: 8px 12px; border-bottom: 1px solid #1a1a1a; font-size: 16px; }
+  h1 { color: #00ff88; font-size: 28px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 20px; }
+  h2 { color: #00aaff; font-size: 20px; margin: 25px 0 10px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+  
+  /* Summary Cards */
+  .summary { display: flex; flex-wrap: wrap; gap: 15px; margin: 15px 0; }
+  .card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 15px 20px;
+    flex: 1;
+    min-width: 140px;
+  }
+  .card-val { font-size: 24px; font-weight: bold; }
+  .card-label { font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+  .green { color: #00ff88; }
+  .red { color: #ff4444; }
+  .blue { color: #00aaff; }
+  .yellow { color: #ffaa00; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 15px; }
+  th { text-align: left; color: #00ff88; padding: 8px 10px; border-bottom: 2px solid #333; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  td { padding: 7px 10px; border-bottom: 1px solid #1a1a1a; }
   tr:hover { background: #111; }
-  .status-on { color: #00ff88; }
-  .status-off { color: #ff4444; }
-  .status-wait { color: #ffaa00; }
-  .location { color: #888; font-size: 14px; }
-  .footer { margin-top: 40px; color: #444; font-size: 14px; border-top: 1px solid #222; padding-top: 15px; }
-  .metric { display: inline-block; margin-right: 30px; margin-bottom: 10px; }
-  .metric-val { color: #00ff88; font-size: 24px; font-weight: bold; }
-  .metric-label { color: #888; font-size: 14px; }
+  .right { text-align: right; }
+  .cat-header { background: #0d1117; }
+  .cat-header td { color: #00aaff; font-weight: bold; font-size: 14px; padding: 10px; border-bottom: 1px solid #00aaff33; }
+
+  /* Workload */
+  .workload table td:first-child { color: #ffaa00; font-weight: bold; }
+  
+  .footer { margin-top: 30px; color: #444; font-size: 13px; border-top: 1px solid #222; padding-top: 10px; }
+  .loading { color: #888; font-style: italic; }
+  .refresh-note { color: #555; font-size: 12px; }
 </style>
 </head>
 <body>
 
 <h1>📦 INBOX INC.</h1>
-<div class="subtitle">AI-Driven Trading Operation — Operations Dashboard</div>
+<div class="subtitle">AI-Driven Trading Operation — Live Dashboard (updates every 15 min)</div>
 
-<div>
-  <div class="metric"><div class="metric-val">$100,000</div><div class="metric-label">Paper Account</div></div>
-  <div class="metric"><div class="metric-val">$10,000</div><div class="metric-label">Daily Limit</div></div>
-  <div class="metric"><div class="metric-val">6</div><div class="metric-label">Active Services</div></div>
-  <div class="metric"><div class="metric-val">$0/mo</div><div class="metric-label">Warehouse Cost</div></div>
+<!-- Account Summary -->
+<div class="summary" id="summary">
+  <div class="card"><div class="card-val blue" id="equity">—</div><div class="card-label">Equity</div></div>
+  <div class="card"><div class="card-val" id="totalpl">—</div><div class="card-label">Total P/L</div></div>
+  <div class="card"><div class="card-val" id="cash">—</div><div class="card-label">Cash</div></div>
+  <div class="card"><div class="card-val blue" id="positions-count">—</div><div class="card-label">Positions</div></div>
+  <div class="card"><div class="card-val yellow" id="updated">—</div><div class="card-label">Last Update</div></div>
 </div>
 
+<!-- Category Breakdown -->
+<h2>ALLOCATION</h2>
+<table id="categories-table">
+  <tr><th>Category</th><th class="right">Market Value</th><th class="right">P/L</th><th class="right">% of Portfolio</th></tr>
+</table>
+
+<!-- Positions -->
+<h2>POSITIONS — ALPACA (PAPER)</h2>
+<table id="positions-table">
+  <tr><th>Symbol</th><th class="right">Qty</th><th class="right">Avg Entry</th><th class="right">Current</th><th class="right">Market Value</th><th class="right">P/L ($)</th><th class="right">P/L (%)</th></tr>
+</table>
+
+<!-- Kalshi -->
+<h2>POSITIONS — KALSHI</h2>
+<div id="kalshi-section">
+  <p class="loading">Waiting for Kalshi API credentials...</p>
+</div>
+
+<!-- Recent Orders -->
+<h2>RECENT TRADES</h2>
+<table id="orders-table">
+  <tr><th>Symbol</th><th>Side</th><th class="right">Qty</th><th class="right">Price</th><th>Time</th></tr>
+</table>
+
+<!-- Workload -->
 <h2>WORKLOAD DISTRIBUTION</h2>
+<div class="workload">
 <table>
-  <tr>
-    <th>Process</th>
-    <th>Description</th>
-    <th>Location</th>
-    <th>Status</th>
-  </tr>
-  <tr>
-    <td>Bob (Manager)</td>
-    <td>All decisions, trading, research, coding, security. Claude Opus.</td>
-    <td class="location">EliteBook</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>Price Monitor</td>
-    <td>Tracks 15 stocks, 4 crypto, 20+ Polymarket events every 60s.</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>Arbitrage Scanner</td>
-    <td>Compares Polymarket vs Kalshi odds. Flags spreads &gt;2%.</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>News Sentinel</td>
-    <td>Scrapes financial RSS feeds. FinBERT sentiment on GPU.</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>Backtesting Engine</td>
-    <td>Runs SMA, mean reversion, momentum strategies. Reports winners.</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>Data Collector</td>
-    <td>Logs market data every 5min (market hours) / 15min (off hours).</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>Ollama Analyst</td>
-    <td>Local LLM (Qwen 2.5 7B) analyzes alerts from other services.</td>
-    <td class="location">Gaming PC</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>The Spotter</td>
-    <td>Fast classifier (Llama 3.2 3B). Triage news &amp; events. ~103 tok/s.</td>
-    <td class="location">Gaming PC GPU</td>
-    <td class="status-on">● ACTIVE</td>
-  </tr>
-  <tr>
-    <td>0DTE Options</td>
-    <td>10% allocation. SPY/QQQ daily expiry trades via Alpaca.</td>
-    <td class="location">EliteBook</td>
-    <td class="status-wait">● MARKET CLOSED</td>
-  </tr>
-  <tr>
-    <td>Blue Chip Portfolio</td>
-    <td>40% allocation. Discounted large-caps. GOOGL, AMD, AMZN, MSFT.</td>
-    <td class="location">EliteBook</td>
-    <td class="status-wait">● PENDING FILL</td>
-  </tr>
-  <tr>
-    <td>Haggly.io</td>
-    <td>Side project — marketplace bartering translator. Web + PWA.</td>
-    <td class="location">TBD</td>
-    <td class="status-off">● NOT STARTED</td>
-  </tr>
+  <tr><th>Process</th><th>Description</th><th>Status</th></tr>
+  <tr><td>Bob (Manager)</td><td>All decisions, trading, research, coding. Claude Opus.</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Price Monitor</td><td>15 stocks, 4 crypto, 20+ Polymarket events / 60s</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Arb Scanner</td><td>Polymarket vs Kalshi odds comparison / 2min</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>News Sentinel</td><td>RSS feeds + FinBERT sentiment / 3min</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Backtest Engine</td><td>SMA, mean reversion, momentum strategies / 6hr</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Data Collector</td><td>Market data logging / 5-15min</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Ollama Analyst</td><td>Local LLM analysis (Qwen 2.5 7B) / continuous</td><td class="green">● ACTIVE</td></tr>
+  <tr><td>Portfolio Tracker</td><td>Dashboard data feed / 15min</td><td class="green">● ACTIVE</td></tr>
 </table>
+</div>
 
-<h2>PORTFOLIO ALLOCATION</h2>
+<!-- Rules -->
+<h2>TRADING RULES</h2>
 <table>
-  <tr><th>Slice</th><th>Target</th><th>Strategy</th></tr>
-  <tr><td>0DTE Options</td><td>10% ($1,000/day)</td><td>SPY/QQQ near-money calls/puts, momentum-based</td></tr>
-  <tr><td>Blue Chip Bargains</td><td>40% ($4,000/day)</td><td>Discounted large-caps per research + backtests</td></tr>
-  <tr><td>Cash Reserve</td><td>50%</td><td>Dry powder for opportunities</td></tr>
-</table>
-
-<h2>INFRASTRUCTURE</h2>
-<table>
-  <tr><th>Machine</th><th>Role</th><th>Specs</th></tr>
-  <tr><td>HP EliteBook 845 G8</td><td>HQ — Bob, Claude API, trading</td><td>Ubuntu 24.04, private WiFi</td></tr>
-  <tr><td>Gaming PC</td><td>Warehouse — Ollama, 6 services</td><td>Ryzen 5600x, GTX 1660S 6GB, 32GB RAM</td></tr>
-  <tr><td>i7 Laptop</td><td>Available</td><td>16GB RAM, 500GB HDD</td></tr>
-  <tr><td>XPS Laptop</td><td>Available (RIP Otto)</td><td>TBD</td></tr>
+  <tr><td class="yellow">Alpaca Daily Limit</td><td>$10,000 new trades/day</td></tr>
+  <tr><td class="yellow">0DTE Options</td><td>10% allocation — SPY/QQQ daily expiry</td></tr>
+  <tr><td class="yellow">Blue Chips</td><td>40% allocation — discounted large-caps</td></tr>
+  <tr><td class="yellow">LEAPs</td><td>25% allocation — sell 50% at +30%, rest at +70%</td></tr>
+  <tr><td class="yellow">INBOX ETF</td><td>25% allocation — backtested strategy basket</td></tr>
+  <tr><td class="yellow">Kalshi Max Bet</td><td>$20 per position, $200 max deployed</td></tr>
+  <tr><td class="yellow">Kalshi Strategy</td><td>AI-Contrarian (autonomous)</td></tr>
 </table>
 
 <div class="footer">
-  INBOX INC. — CEO: Cody | Manager: Bob (Claude Opus)<br>
-  Paper trading only. $10,000/day limit. All local services cost $0/mo.<br>
-  Last updated: 2026-02-11
+  INBOX INC. — CEO: Cody | Manager: Bob (Claude Opus) | Paper Trading Only<br>
+  <span class="refresh-note">Auto-refreshes every 15 minutes. Data from Alpaca + Kalshi APIs.</span>
 </div>
+
+<script>
+const PORTFOLIO_URL = 'portfolio.json';
+
+function fmt(n, dec=2) {
+  if (n === undefined || n === null) return '—';
+  return n.toLocaleString('en-US', {minimumFractionDigits: dec, maximumFractionDigits: dec});
+}
+
+function plColor(val) {
+  if (val > 0) return 'green';
+  if (val < 0) return 'red';
+  return '';
+}
+
+function plSign(val) {
+  return val >= 0 ? '+' + fmt(val) : fmt(val);
+}
+
+async function loadPortfolio() {
+  try {
+    const resp = await fetch(PORTFOLIO_URL + '?t=' + Date.now());
+    if (!resp.ok) throw new Error('No data yet');
+    const data = await resp.json();
+
+    // Summary
+    const acct = data.account || {};
+    document.getElementById('equity').textContent = '$' + fmt(acct.equity, 0);
+    const plEl = document.getElementById('totalpl');
+    plEl.textContent = (acct.total_pl >= 0 ? '+$' : '-$') + fmt(Math.abs(acct.total_pl), 0) + ' (' + fmt(acct.total_pl_pct, 2) + '%)';
+    plEl.className = 'card-val ' + plColor(acct.total_pl);
+    document.getElementById('cash').textContent = '$' + fmt(acct.cash, 0);
+    document.getElementById('positions-count').textContent = (data.positions || []).length;
+    document.getElementById('updated').textContent = data.updated_at || '—';
+
+    // Categories
+    const catTable = document.getElementById('categories-table');
+    catTable.innerHTML = '<tr><th>Category</th><th class="right">Market Value</th><th class="right">P/L</th><th class="right">% of Portfolio</th></tr>';
+    const cats = data.categories || {};
+    const totalMv = Object.values(cats).reduce((s, c) => s + c.market_value, 0);
+    for (const [name, c] of Object.entries(cats)) {
+      const pct = totalMv > 0 ? (c.market_value / totalMv * 100) : 0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${name} (${c.count})</td><td class="right">$${fmt(c.market_value, 0)}</td><td class="right ${plColor(c.unrealized_pl)}">${plSign(c.unrealized_pl)}</td><td class="right">${fmt(pct, 1)}%</td>`;
+      catTable.appendChild(tr);
+    }
+
+    // Positions
+    const posTable = document.getElementById('positions-table');
+    posTable.innerHTML = '<tr><th>Symbol</th><th class="right">Qty</th><th class="right">Avg Entry</th><th class="right">Current</th><th class="right">Market Value</th><th class="right">P/L ($)</th><th class="right">P/L (%)</th></tr>';
+
+    let lastCat = '';
+    for (const p of (data.positions || [])) {
+      if (p.category !== lastCat) {
+        lastCat = p.category;
+        const catRow = document.createElement('tr');
+        catRow.className = 'cat-header';
+        catRow.innerHTML = `<td colspan="7">${p.category}</td>`;
+        posTable.appendChild(catRow);
+      }
+      const tr = document.createElement('tr');
+      const sym = p.symbol.length > 15 ? p.symbol.slice(0, 6) + '...' + p.symbol.slice(-6) : p.symbol;
+      tr.innerHTML = `<td>${sym}</td><td class="right">${p.qty}</td><td class="right">$${fmt(p.avg_entry)}</td><td class="right">$${fmt(p.current_price)}</td><td class="right">$${fmt(p.market_value, 0)}</td><td class="right ${plColor(p.unrealized_pl)}">${plSign(p.unrealized_pl)}</td><td class="right ${plColor(p.unrealized_pl_pct)}">${plSign(p.unrealized_pl_pct)}%</td>`;
+      posTable.appendChild(tr);
+    }
+
+    // Kalshi
+    const kalshiDiv = document.getElementById('kalshi-section');
+    if (data.kalshi_positions && data.kalshi_positions.length > 0) {
+      let html = '<table><tr><th>Market</th><th class="right">Position</th><th class="right">Entry</th><th class="right">Current</th><th class="right">P/L</th></tr>';
+      for (const k of data.kalshi_positions) {
+        html += `<tr><td>${k.market}</td><td class="right">${k.side} ${k.qty}</td><td class="right">${k.entry}¢</td><td class="right">${k.current}¢</td><td class="right ${plColor(k.pl)}">${plSign(k.pl)}</td></tr>`;
+      }
+      html += '</table>';
+      kalshiDiv.innerHTML = html;
+    }
+
+    // Recent Orders
+    const ordTable = document.getElementById('orders-table');
+    ordTable.innerHTML = '<tr><th>Symbol</th><th>Side</th><th class="right">Qty</th><th class="right">Price</th><th>Time</th></tr>';
+    for (const o of (data.recent_orders || []).slice(0, 15)) {
+      const tr = document.createElement('tr');
+      const sideClass = o.side === 'buy' ? 'green' : 'red';
+      const time = o.filled_at ? new Date(o.filled_at).toLocaleTimeString() : '—';
+      tr.innerHTML = `<td>${o.symbol}</td><td class="${sideClass}">${o.side.toUpperCase()}</td><td class="right">${o.qty}</td><td class="right">$${fmt(o.avg_price)}</td><td>${time}</td>`;
+      ordTable.appendChild(tr);
+    }
+
+  } catch (e) {
+    console.log('Loading portfolio data...', e);
+  }
+}
+
+loadPortfolio();
+setInterval(loadPortfolio, 60000); // Refresh display every 60s (data updates every 15min)
+</script>
 
 </body>
 </html>
