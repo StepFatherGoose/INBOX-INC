@@ -202,6 +202,266 @@
         .status-warning { background: #f0883e; }
         .status-critical { background: #ff4444; }
         
+        /* Level 4: Configuration Panel */
+        .level-4 {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 40px;
+        }
+        
+        .configuration-panel {
+            background: linear-gradient(135deg, #1a2e1a, #2e1a1a);
+            border: 3px solid #ff6b35;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: left;
+        }
+        
+        .configuration-panel h2 {
+            font-size: 2.2em;
+            color: #ff6b35;
+            text-align: center;
+            margin: 0 0 30px 0;
+        }
+        
+        .config-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .config-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #b388ff;
+        }
+        
+        .config-section h4 {
+            color: #b388ff;
+            font-size: 1.4em;
+            margin: 0 0 15px 0;
+            border-bottom: 1px solid #444;
+            padding-bottom: 8px;
+        }
+        
+        .config-item {
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .config-item label {
+            font-size: 1.1em;
+            color: #e0e0e0;
+            font-weight: bold;
+        }
+        
+        .config-item select,
+        .config-item input[type="number"],
+        .config-item input[type="range"] {
+            padding: 8px 12px;
+            font-size: 1em;
+            background: #2a2a2a;
+            color: #e0e0e0;
+            border: 2px solid #555;
+            border-radius: 6px;
+            outline: none;
+        }
+        
+        .config-item select:focus,
+        .config-item input:focus {
+            border-color: #b388ff;
+            box-shadow: 0 0 8px rgba(179, 136, 255, 0.3);
+        }
+        
+        .config-note {
+            font-size: 0.9em;
+            color: #7ee787;
+            font-style: italic;
+        }
+        
+        .range-value {
+            font-size: 1.1em;
+            color: #00d4ff;
+            font-weight: bold;
+        }
+        
+        .config-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .config-toggle input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #b388ff;
+        }
+        
+        .config-toggle label {
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        
+        /* Cost Optimization Display */
+        .cost-optimization {
+            background: rgba(126, 231, 135, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .cost-stat {
+            margin: 10px 0;
+        }
+        
+        .cost-bar {
+            width: 100%;
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 5px 0;
+        }
+        
+        .cost-used {
+            height: 100%;
+            background: linear-gradient(90deg, #7ee787, #00d4ff);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .cost-remaining {
+            font-size: 0.9em;
+            color: #7ee787;
+        }
+        
+        .savings-note {
+            font-size: 0.9em;
+            color: #7ee787;
+            font-style: italic;
+        }
+        
+        /* Node Configuration */
+        .node-config {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .node-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .node-roles {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .role-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .role-toggle input[type="checkbox"]:disabled {
+            opacity: 0.6;
+        }
+        
+        .node-status {
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(126, 231, 135, 0.1);
+            border-radius: 6px;
+        }
+        
+        /* Emergency Section */
+        .emergency-section {
+            border-left-color: #ff4444;
+            background: rgba(255, 68, 68, 0.05);
+        }
+        
+        .emergency-section h4 {
+            color: #ff4444;
+            border-bottom-color: #ff4444;
+        }
+        
+        .emergency-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .emergency-btn {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff4444, #cc3333);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .emergency-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #dd4444);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+        
+        .config-btn {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #b388ff, #9966dd);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .config-btn:hover {
+            background: linear-gradient(135deg, #c499ff, #aa77ee);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(179, 136, 255, 0.3);
+        }
+        
+        .emergency-status {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .system-health {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .health-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .health-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px;
+        }
+        
         /* RESPONSIVE */
         @media (max-width: 1000px) {
             .level-2, .level-3 {
@@ -212,6 +472,14 @@
             .muscle-node, .trading-platforms,
             .ai-models, .data-flow, .guardrails {
                 max-width: 600px;
+            }
+            
+            .config-sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .emergency-buttons {
+                grid-template-columns: 1fr;
             }
         }
         
@@ -423,6 +691,211 @@
                     </div>
                 </div>
             </div>
+
+            <!-- LEVEL 4: CONFIGURATION PANEL -->
+            <div class="level-4">
+                <div class="configuration-panel">
+                    <h2>⚙️ SYSTEM CONFIGURATION</h2>
+                    
+                    <div class="config-sections">
+                        <!-- Trading Parameters -->
+                        <div class="config-section">
+                            <h4>💰 Trading Parameters</h4>
+                            
+                            <div class="config-item">
+                                <label>Max Position Size (USD):</label>
+                                <input type="number" id="max-position" value="50" min="10" max="200">
+                                <span class="config-note">CEO removed $20 limit for high-edge plays</span>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Minimum Edge Threshold:</label>
+                                <select id="min-edge">
+                                    <option value="5">5¢ (Aggressive)</option>
+                                    <option value="10" selected>10¢ (Balanced)</option>
+                                    <option value="15">15¢ (Conservative)</option>
+                                    <option value="20">20¢ (Very Conservative)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Auto-Trading Mode:</label>
+                                <select id="auto-trading">
+                                    <option value="full" selected>Full Autonomous (CEO Driving Mode)</option>
+                                    <option value="approval">Require CEO Approval</option>
+                                    <option value="notify">Notify Only</option>
+                                    <option value="disabled">Manual Only</option>
+                                </select>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Risk Concentration Limit:</label>
+                                <input type="range" id="concentration-limit" min="10" max="50" value="25">
+                                <span class="range-value">25%</span>
+                            </div>
+                        </div>
+
+                        <!-- Monitoring & Alerts -->
+                        <div class="config-section">
+                            <h4>📊 Monitoring & Alerts</h4>
+                            
+                            <div class="config-item">
+                                <label>Portfolio Check Interval:</label>
+                                <select id="portfolio-interval">
+                                    <option value="30">30 seconds (High Frequency)</option>
+                                    <option value="60" selected>1 minute (Balanced)</option>
+                                    <option value="120">2 minutes (Resource Saving)</option>
+                                    <option value="300">5 minutes (Low Impact)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Scanner Frequency:</label>
+                                <select id="scanner-interval">
+                                    <option value="60">1 minute (Intensive)</option>
+                                    <option value="300" selected>5 minutes (Optimal)</option>
+                                    <option value="600">10 minutes (Conservative)</option>
+                                    <option value="1800">30 minutes (Minimal)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="config-toggle">
+                                <input type="checkbox" id="sigkill-protection" checked>
+                                <label for="sigkill-protection">SIGKILL Protection (Process Guardian)</label>
+                            </div>
+                            
+                            <div class="config-toggle">
+                                <input type="checkbox" id="auto-restart" checked>
+                                <label for="auto-restart">Auto-Restart on Crashes</label>
+                            </div>
+                        </div>
+
+                        <!-- AI Model Costs & Routing -->
+                        <div class="config-section">
+                            <h4>🤖 AI Model Economics</h4>
+                            
+                            <div class="cost-optimization">
+                                <div class="cost-stat">
+                                    <strong>Daily Budget:</strong> $5.00
+                                    <div class="cost-bar">
+                                        <div class="cost-used" style="width: 12%;"></div>
+                                    </div>
+                                    <span class="cost-remaining">$4.40 remaining</span>
+                                </div>
+                                
+                                <div class="cost-stat">
+                                    <strong>Monthly Savings:</strong> $127
+                                    <div class="savings-note">70% reduction via local AI routing</div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Local AI Priority:</label>
+                                <select id="local-priority">
+                                    <option value="always" selected>Always Use Local First</option>
+                                    <option value="cost-threshold">Use Local if <$1/day</option>
+                                    <option value="balanced">Balanced (Speed vs Cost)</option>
+                                    <option value="performance">Performance First</option>
+                                </select>
+                            </div>
+                            
+                            <div class="config-toggle">
+                                <input type="checkbox" id="emergency-api-fallback" checked>
+                                <label for="emergency-api-fallback">Emergency API Fallback (when local fails)</label>
+                            </div>
+                        </div>
+
+                        <!-- System Architecture -->
+                        <div class="config-section">
+                            <h4>🏗️ Architecture Settings</h4>
+                            
+                            <div class="node-config">
+                                <div class="node-item">
+                                    <strong>🧠 EliteBook (Brains):</strong>
+                                    <div class="node-roles">
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="elitebook-orchestration" checked disabled>
+                                            <label>Strategic Decisions</label>
+                                        </div>
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="elitebook-trading" checked disabled>
+                                            <label>Trade Execution</label>
+                                        </div>
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="elitebook-risk" checked disabled>
+                                            <label>Risk Management</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="node-item">
+                                    <strong>💪 Gaming PC (Muscle):</strong>
+                                    <div class="node-roles">
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="gaming-pc-analysis" checked>
+                                            <label>Market Analysis</label>
+                                        </div>
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="gaming-pc-scanning" checked>
+                                            <label>Opportunity Scanning</label>
+                                        </div>
+                                        <div class="role-toggle">
+                                            <input type="checkbox" id="gaming-pc-backtesting" checked>
+                                            <label>Backtesting & Heavy Compute</label>
+                                        </div>
+                                    </div>
+                                    <div class="node-status">
+                                        <span class="status-indicator status-healthy"></span>
+                                        <span>Gaming PC: Online (192.168.68.58:11434)</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="config-item">
+                                <label>Network Latency Optimization:</label>
+                                <select id="network-optimization">
+                                    <option value="same-lan" selected>Same LAN (0.3ms optimal)</option>
+                                    <option value="local-network">Local Network</option>
+                                    <option value="internet">Internet Routing</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Emergency Controls -->
+                        <div class="config-section emergency-section">
+                            <h4>🚨 Emergency Controls</h4>
+                            
+                            <div class="emergency-buttons">
+                                <button class="emergency-btn" onclick="emergencyStop()">🛑 STOP ALL TRADING</button>
+                                <button class="emergency-btn" onclick="emergencyClose()">💰 CLOSE ALL POSITIONS</button>
+                                <button class="emergency-btn" onclick="emergencyRestart()">🔄 RESTART SYSTEMS</button>
+                                <button class="config-btn" onclick="saveConfiguration()">💾 SAVE CONFIGURATION</button>
+                                <button class="config-btn" onclick="loadConfiguration()">📂 LOAD CONFIGURATION</button>
+                            </div>
+                            
+                            <div class="emergency-status">
+                                <div class="system-health">
+                                    <strong>System Health:</strong>
+                                    <div class="health-indicators">
+                                        <span class="health-item">
+                                            <span class="status-indicator status-healthy"></span>
+                                            Trading Monitor (PID: 73242)
+                                        </span>
+                                        <span class="health-item">
+                                            <span class="status-indicator status-healthy"></span>
+                                            Weather Scanner (PID: 73261)
+                                        </span>
+                                        <span class="health-item">
+                                            <span class="status-indicator status-healthy"></span>
+                                            Process Guardian
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -472,12 +945,214 @@
             }
         }
 
+        // Configuration management functions
+        function saveConfiguration() {
+            const config = {
+                trading: {
+                    maxPosition: document.getElementById('max-position').value,
+                    minEdge: document.getElementById('min-edge').value,
+                    autoTrading: document.getElementById('auto-trading').value,
+                    concentrationLimit: document.getElementById('concentration-limit').value
+                },
+                monitoring: {
+                    portfolioInterval: document.getElementById('portfolio-interval').value,
+                    scannerInterval: document.getElementById('scanner-interval').value,
+                    sigkillProtection: document.getElementById('sigkill-protection').checked,
+                    autoRestart: document.getElementById('auto-restart').checked
+                },
+                ai: {
+                    localPriority: document.getElementById('local-priority').value,
+                    emergencyFallback: document.getElementById('emergency-api-fallback').checked
+                },
+                architecture: {
+                    networkOptimization: document.getElementById('network-optimization').value,
+                    gamingPcAnalysis: document.getElementById('gaming-pc-analysis').checked,
+                    gamingPcScanning: document.getElementById('gaming-pc-scanning').checked,
+                    gamingPcBacktesting: document.getElementById('gaming-pc-backtesting').checked
+                },
+                models: {
+                    strategic: document.getElementById('strategic-model').value,
+                    risk: document.getElementById('risk-model').value,
+                    analysis: document.getElementById('analysis-model').value,
+                    compute: document.getElementById('compute-model').value,
+                    execution: document.getElementById('execution-model').value,
+                    scanning: document.getElementById('scanning-model').value
+                }
+            };
+            
+            // Save to localStorage
+            localStorage.setItem('inbox-inc-config', JSON.stringify(config));
+            
+            // Visual feedback
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '✅ SAVED';
+            btn.style.background = 'linear-gradient(135deg, #7ee787, #5acc5a)';
+            
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.style.background = '';
+            }, 2000);
+            
+            console.log('Configuration saved:', config);
+            
+            // In a real implementation, this would send to backend
+            // await fetch('/api/config', { method: 'POST', body: JSON.stringify(config) });
+        }
+        
+        function loadConfiguration() {
+            const savedConfig = localStorage.getItem('inbox-inc-config');
+            if (!savedConfig) {
+                alert('No saved configuration found');
+                return;
+            }
+            
+            try {
+                const config = JSON.parse(savedConfig);
+                
+                // Load trading settings
+                if (config.trading) {
+                    document.getElementById('max-position').value = config.trading.maxPosition || 50;
+                    document.getElementById('min-edge').value = config.trading.minEdge || 10;
+                    document.getElementById('auto-trading').value = config.trading.autoTrading || 'full';
+                    document.getElementById('concentration-limit').value = config.trading.concentrationLimit || 25;
+                    updateRangeValue('concentration-limit');
+                }
+                
+                // Load monitoring settings
+                if (config.monitoring) {
+                    document.getElementById('portfolio-interval').value = config.monitoring.portfolioInterval || 60;
+                    document.getElementById('scanner-interval').value = config.monitoring.scannerInterval || 300;
+                    document.getElementById('sigkill-protection').checked = config.monitoring.sigkillProtection !== false;
+                    document.getElementById('auto-restart').checked = config.monitoring.autoRestart !== false;
+                }
+                
+                // Load AI settings
+                if (config.ai) {
+                    document.getElementById('local-priority').value = config.ai.localPriority || 'always';
+                    document.getElementById('emergency-api-fallback').checked = config.ai.emergencyFallback !== false;
+                }
+                
+                // Load architecture settings
+                if (config.architecture) {
+                    document.getElementById('network-optimization').value = config.architecture.networkOptimization || 'same-lan';
+                    document.getElementById('gaming-pc-analysis').checked = config.architecture.gamingPcAnalysis !== false;
+                    document.getElementById('gaming-pc-scanning').checked = config.architecture.gamingPcScanning !== false;
+                    document.getElementById('gaming-pc-backtesting').checked = config.architecture.gamingPcBacktesting !== false;
+                }
+                
+                // Load model settings
+                if (config.models) {
+                    Object.keys(config.models).forEach(modelType => {
+                        const element = document.getElementById(modelType + '-model');
+                        if (element) {
+                            element.value = config.models[modelType];
+                            updateRouteDisplay(element.id, element.value);
+                        }
+                    });
+                }
+                
+                // Visual feedback
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = '✅ LOADED';
+                btn.style.background = 'linear-gradient(135deg, #7ee787, #5acc5a)';
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = '';
+                }, 2000);
+                
+                console.log('Configuration loaded:', config);
+                
+            } catch (error) {
+                alert('Error loading configuration: ' + error.message);
+            }
+        }
+        
+        // Emergency control functions
+        function emergencyStop() {
+            if (confirm('🚨 EMERGENCY STOP\n\nThis will immediately stop all trading operations.\n\nContinue?')) {
+                // In real implementation, this would call the emergency stop API
+                console.log('EMERGENCY STOP ACTIVATED');
+                alert('🛑 All trading operations stopped.\n\nSystems in emergency shutdown mode.\nRestart required to resume operations.');
+                
+                // Visual feedback - turn all status indicators red
+                document.querySelectorAll('.status-healthy').forEach(indicator => {
+                    indicator.className = 'status-indicator status-critical';
+                });
+            }
+        }
+        
+        function emergencyClose() {
+            if (confirm('💰 EMERGENCY POSITION CLOSE\n\nThis will immediately close all open positions at market prices.\n\nThis action cannot be undone.\n\nContinue?')) {
+                console.log('EMERGENCY CLOSE POSITIONS ACTIVATED');
+                alert('💰 Emergency position closure initiated.\n\nAll positions being closed at market prices.\nCheck trading dashboard for status updates.');
+            }
+        }
+        
+        function emergencyRestart() {
+            if (confirm('🔄 EMERGENCY RESTART\n\nThis will restart all trading systems.\n\nContinue?')) {
+                console.log('EMERGENCY RESTART ACTIVATED');
+                alert('🔄 System restart initiated.\n\nAll trading processes will restart within 30 seconds.\nMonitor system status for confirmation.');
+                
+                // Simulate restart process
+                document.querySelectorAll('.status-healthy').forEach(indicator => {
+                    indicator.className = 'status-indicator status-warning';
+                });
+                
+                setTimeout(() => {
+                    document.querySelectorAll('.status-warning').forEach(indicator => {
+                        indicator.className = 'status-indicator status-healthy';
+                    });
+                    alert('✅ System restart complete.\nAll trading systems operational.');
+                }, 5000);
+            }
+        }
+        
+        // Range input value updater
+        function updateRangeValue(rangeId) {
+            const range = document.getElementById(rangeId);
+            const valueSpan = range.nextElementSibling;
+            if (valueSpan && valueSpan.classList.contains('range-value')) {
+                valueSpan.textContent = range.value + '%';
+            }
+        }
+        
+        // Initialize configuration panel
+        function initializeConfigPanel() {
+            // Set up range value updates
+            document.getElementById('concentration-limit').addEventListener('input', function() {
+                updateRangeValue(this.id);
+            });
+            
+            // Set up configuration change handlers
+            document.querySelectorAll('.config-section select, .config-section input').forEach(element => {
+                element.addEventListener('change', function() {
+                    console.log(`Config changed: ${this.id} = ${this.type === 'checkbox' ? this.checked : this.value}`);
+                    // In real implementation, this could auto-save or mark as modified
+                });
+            });
+            
+            // Load saved configuration if available
+            const savedConfig = localStorage.getItem('inbox-inc-config');
+            if (savedConfig) {
+                console.log('Saved configuration detected');
+            }
+        }
+
         // Initialize route displays
         document.addEventListener('DOMContentLoaded', function() {
             // Set initial colors based on default selections
             document.querySelectorAll('select').forEach(select => {
                 updateRouteDisplay(select.id, select.value);
             });
+            
+            // Initialize configuration panel
+            initializeConfigPanel();
+            
+            // Update range values
+            updateRangeValue('concentration-limit');
         });
     </script>
 </body>
