@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INBOX INC.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #0c0c0f;
+    --card: #16161a;
+    --card-hover: #1c1c22;
+    --border: #2a2a35;
+    --border-glow: #7c3aed;
+    --text: #e4e4e7;
+    --text-dim: #71717a;
+    --text-muted: #52525b;
+    --accent: #7c3aed;
+    --accent2: #06b6d4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --pink: #ec4899;
+    --blue: #3b82f6;
+    --glass: rgba(22,22,26,0.8);
+    --gradient1: linear-gradient(135deg, #7c3aed, #ec4899);
+    --gradient2: linear-gradient(135deg, #06b6d4, #22c55e);
+    --gradient3: linear-gradient(135deg, #f59e0b, #ef4444);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(124,58,237,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* --- HEADER --- */
+  .header {
+    position: relative;
+    z-index: 1;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(20px);
+    background: rgba(12,12,15,0.9);
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .header-left { display: flex; align-items: center; gap: 16px; }
+
+  .logo {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: var(--gradient1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .logo-sub {
+    font-size: 13px;
+    color: var(--text-dim);
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .header-stats { display: flex; gap: 12px; flex-wrap: wrap; }
+  .h-stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 18px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .h-stat-label { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 500; }
+  .h-stat-value { font-size: 22px; font-weight: 700; margin-top: 2px; }
+  .h-stat-value.purple { color: var(--accent); }
+  .h-stat-value.cyan { color: var(--accent2); }
+  .h-stat-value.green { color: var(--green); }
+
+  /* --- LAYOUT --- */
+  .main-layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 16px;
+    padding: 16px 24px;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
+  @media (max-width: 1000px) { .main-layout { grid-template-columns: 1fr; } }
+
+  .left-col, .right-col { display: flex; flex-direction: column; gap: 16px; }
+
+  /* --- PANELS --- */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .panel:hover { border-color: rgba(124,58,237,0.3); }
+
+  .panel-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .panel-icon { font-size: 20px; }
+  .panel-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .panel-badge {
+    margin-left: auto;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .badge-live { background: rgba(34,197,94,0.15); color: var(--green); }
+
+  .panel-body { padding: 16px 20px; }
+
+  /* --- OFFICE FLOOR --- */
+  #officeCanvas {
+    width: 100%;
+    display: block;
+  }
+
+  /* --- WORKFLOW --- */
+  .workflow-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+  .wf-step {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 18px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    position: relative;
+    transition: all 0.3s;
+  }
+  .wf-step.active {
+    color: #fff;
+    background: var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(124,58,237,0.3);
+  }
+  .wf-step.completed { color: var(--green); }
+  .wf-arrow { color: var(--text-muted); padding: 0 4px; font-size: 14px; }
+
+  /* --- TEAM CARDS --- */
+  .employee-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.25s;
+  }
+  .employee-card:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(124,58,237,0.3);
+    transform: translateX(4px);
+  }
+
+  .emp-avatar {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .emp-avatar.mgr { background: linear-gradient(135deg, rgba(239,68,68,0.2), rgba(236,72,153,0.2)); }
+  .emp-avatar.res { background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(59,130,246,0.2)); }
+  .emp-avatar.dev { background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(6,182,212,0.2)); }
+  .emp-avatar.sec { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(239,68,68,0.2)); }
+
+  .emp-name { font-size: 16px; font-weight: 600; }
+  .emp-role { font-size: 12px; color: var(--text-dim); margin-top: 1px; }
+  .emp-status { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+
+  .status-dot {
+    display: inline-block;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+  .s-active { background: var(--green); box-shadow: 0 0 8px rgba(34,197,94,0.5); }
+  .s-busy { background: var(--red); box-shadow: 0 0 8px rgba(239,68,68,0.5); }
+  .s-idle { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.5); }
+
+  /* --- BULLETIN BOARD --- */
+  .bulletin-board {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  .bulletin-board::-webkit-scrollbar { width: 4px; }
+  .bulletin-board::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  .idea-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .idea-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .idea-card:hover { border-color: rgba(124,58,237,0.3); }
+
+  .idea-card.phase-research::before { background: var(--accent); }
+  .idea-card.phase-review::before { background: var(--amber); }
+  .idea-card.phase-collab::before { background: var(--accent2); }
+  .idea-card.phase-building::before { background: var(--green); }
+  .idea-card.phase-approval::before { background: var(--red); animation: pulse 1.5s infinite; }
+  .idea-card.phase-done::before { background: var(--text-muted); }
+  .idea-card.phase-done { opacity: 0.5; }
+
+  .idea-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+  .idea-tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tag-research { background: rgba(124,58,237,0.15); color: var(--accent); }
+  .tag-review { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .tag-collab { background: rgba(6,182,212,0.15); color: var(--accent2); }
+  .tag-building { background: rgba(34,197,94,0.15); color: var(--green); }
+  .tag-approval { background: rgba(239,68,68,0.15); color: var(--red); }
+  .tag-done { background: rgba(82,82,91,0.2); color: var(--text-muted); }
+
+  .idea-desc { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+
+  .idea-progress {
+    margin-top: 10px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .idea-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s;
+  }
+
+  .bulletin-empty {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px 20px;
+    font-size: 14px;
+  }
+
+  /* --- LOG --- */
+  .log-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    height: 220px;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 2;
+  }
+  .log-box::-webkit-scrollbar { width: 4px; }
+  .log-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .log-time { color: var(--text-muted); }
+  .log-who { color: var(--accent2); font-weight: 500; }
+  .log-what { color: var(--text-dim); }
+  .log-alert { color: var(--red); font-weight: 500; }
+
+  /* --- MEETING --- */
+  .meeting-box {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    font-size: 14px;
+    line-height: 1.8;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .meeting-box::-webkit-scrollbar { width: 4px; }
+  .meeting-box::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  .meeting-title { font-weight: 600; color: var(--accent); margin-bottom: 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+  .meeting-item { color: var(--text-dim); margin-bottom: 4px; font-size: 13px; }
+  .meeting-item strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div>
+      <div class="logo">📬 INBOX INC.</div>
+      <div class="logo-sub">Ideas in · Products out</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="h-stat">
+      <div class="h-stat-label">Shipped</div>
+      <div class="h-stat-value purple" id="statShipped">0</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-label">In Progress</div>
+      <div class="h-stat-value cyan" id="statActive">0</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-label">Uptime</div>
+      <div class="h-stat-value green" id="statUptime">00:00:00</div>
+    </div>
+    <div class="h-stat">
+      <div class="h-stat-label">Morale</div>
+      <div class="h-stat-value" id="statMorale">☕</div>
+    </div>
+  </div>
+</div>
+
+<div class="main-layout">
+  <div class="left-col">
+
+    <!-- Workflow -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-icon">⚡</span>
+        <span class="panel-title">Pipeline</span>
+        <span class="panel-badge badge-live">● LIVE</span>
+      </div>
+      <div class="panel-body">
+        <div class="workflow-bar" id="workflowBar"></div>
+      </div>
+    </div>
+
+    <!-- Office Floor -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-icon">🏢</span>
+        <span class="panel-title">Office Floor</span>
+      </div>
+      <canvas id="officeCanvas" width="900" height="400"></canvas>
+    </div>
+
+    <!-- Team -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-icon">👥</span>
+        <span class="panel-title">Team</span>
+      </div>
+      <div class="panel-body" id="teamCards"></div>
+    </div>
+
+    <!-- Conference Room -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-icon">🗓️</span>
+        <span class="panel-title">Conference Room — Daily Standup</span>
+      </div>
+      <div class="panel-body">
+        <div class="meeting-box" id="meetingBox">
+          <div class="meeting-title">Meeting Notes</div>
+          <div class="meeting-item" style="font-style:italic;color:var(--text-muted);">No meetings yet today...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-icon">📜</span>
+        <span class="panel-title">Activity Log</span>
+      </div>
+      <div class="panel-body">
+        <div class="log-box" id="logBox"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="right-col">
+    <div class="panel" style="flex:1;">
+      <div class="panel-header">
+        <span class="panel-icon">📌</span>
+        <span class="panel-title">Bulletin Board</span>
+      </div>
+      <div class="panel-body">
+        <div class="bulletin-board" id="bulletinBoard">
+          <div class="bulletin-empty">No ideas yet — Ripley is scanning...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+//  INBOX INC. — Modern Edition
+// ============================================================
+
+const team = [
+  { id: "mgr", name: "Bob", role: "Manager", emoji: "👔", color: "#ef4444", accent: "rgba(239,68,68,", status: "active", doing: "Sipping coffee, overseeing operations" },
+  { id: "res", name: "Webster", role: "Researcher", emoji: "🔍", color: "#7c3aed", accent: "rgba(124,58,237,", status: "active", doing: "Scanning for new ideas" },
+  { id: "dev", name: "Ling", role: "Coder", emoji: "💻", color: "#22c55e", accent: "rgba(34,197,94,", status: "active", doing: "IDE loaded, ready to code" },
+  { id: "sec", name: "Vladimir", role: "Security Guard", emoji: "🛡️", color: "#f59e0b", accent: "rgba(245,158,11,", status: "active", doing: "Patrolling the office perimeter" },
+];
+
+const phases = ["research","review","collab","building","approval","done"];
+const phaseLabels = {
+  research: "🔬 Researching", review: "📋 Under Review", collab: "🤝 Collaborating",
+  building: "🔨 Building", approval: "⚠️ Awaiting Approval", done: "✅ Complete",
+};
+const phaseColors = {
+  research: "#7c3aed", review: "#f59e0b", collab: "#06b6d4",
+  building: "#22c55e", approval: "#ef4444", done: "#52525b",
+};
+const phaseDurations = { research: 14000, review: 9000, collab: 16000, building: 22000, approval: 18000 };
+
+const ideaTemplates = [
+  { title: "Auto-Email Sorter", desc: "ML model to categorize and prioritize incoming emails by urgency and topic." },
+  { title: "Smart Meeting Notes", desc: "Real-time transcription and action item extraction from meeting audio." },
+  { title: "Code Review Bot", desc: "Automated PR reviewer that catches common bugs and style issues." },
+  { title: "Dashboard Generator", desc: "Natural language → live dashboard. Describe it, see it." },
+  { title: "Inbox Zero Agent", desc: "AI that drafts replies, archives junk, and flags urgent messages." },
+  { title: "Doc Summarizer", desc: "Upload any doc, get a 3-sentence summary with key takeaways." },
+  { title: "API Health Monitor", desc: "Continuous endpoint monitoring with anomaly detection and alerts." },
+  { title: "Task Prioritizer", desc: "Analyzes your todo list and suggests optimal execution order." },
+  { title: "Changelog Writer", desc: "Auto-generates changelogs from git history." },
+  { title: "Onboarding Guide", desc: "Interactive new-hire guide with setup tasks and Q&A." },
+];
+
+let ideas = [];
+let nextIdeaId = 0;
+let startTime = Date.now();
+let frame = 0;
+let meetingNotes = [];
+
+// --- CANVAS ---
+const canvas = document.getElementById("officeCanvas");
+const ctx = canvas.getContext("2d");
+
+const agentPos = [
+  { x: 120, y: 180, targetX: 120, targetY: 180, homeX: 120, homeY: 180 },
+  { x: 400, y: 280, targetX: 400, targetY: 280, homeX: 400, homeY: 280 },
+  { x: 680, y: 280, targetX: 680, targetY: 280, homeX: 680, homeY: 280 },
+  { x: 50, y: 320, targetX: 50, targetY: 320, homeX: 50, homeY: 320 },
+];
+
+function drawRR(cx, x, y, w, h, r) {
+  cx.beginPath();
+  cx.moveTo(x+r,y); cx.lineTo(x+w-r,y); cx.quadraticCurveTo(x+w,y,x+w,y+r);
+  cx.lineTo(x+w,y+h-r); cx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  cx.lineTo(x+r,y+h); cx.quadraticCurveTo(x,y+h,x,y+h-r);
+  cx.lineTo(x,y+r); cx.quadraticCurveTo(x,y,x+r,y);
+  cx.closePath();
+}
+
+function drawDesk(cx, x, y) {
+  // Modern desk
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, x, y, 120, 8, 4);
+  cx.fill();
+  // Legs
+  cx.fillStyle = "#1c1c22";
+  cx.fillRect(x+8, y+8, 4, 20);
+  cx.fillRect(x+108, y+8, 4, 20);
+  // Monitor
+  cx.fillStyle = "#1c1c22";
+  drawRR(cx, x+30, y-40, 60, 38, 4);
+  cx.fill();
+  cx.fillStyle = "#0f172a";
+  cx.fillRect(x+33, y-37, 54, 30);
+  // Screen glow
+  cx.fillStyle = "rgba(124,58,237,0.15)";
+  cx.fillRect(x+33, y-37, 54, 30);
+  // Screen content
+  cx.fillStyle = "#22c55e";
+  cx.font = "6px JetBrains Mono, monospace";
+  cx.fillText("> running...", x+36, y-26);
+  cx.fillText("> OK ✓", x+36, y-17);
+  // Stand
+  cx.fillStyle = "#2a2a35";
+  cx.fillRect(x+55, y-2, 10, 4);
+  // Keyboard
+  cx.fillStyle = "#3a3a45";
+  drawRR(cx, x+38, y+2, 44, 6, 2);
+  cx.fill();
+}
+
+function drawBulletinBoard(cx) {
+  const bx = 330, by = 20, bw = 220, bh = 110;
+  // Board
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, bx, by, bw, bh, 8);
+  cx.fill();
+  cx.strokeStyle = "#3a3a45";
+  cx.lineWidth = 2;
+  drawRR(cx, bx, by, bw, bh, 8);
+  cx.stroke();
+  // Header
+  cx.fillStyle = "rgba(124,58,237,0.3)";
+  drawRR(cx, bx, by, bw, 22, 8);
+  cx.fill();
+  cx.fillStyle = "#a78bfa";
+  cx.font = "bold 10px Inter, sans-serif";
+  cx.fillText("📌 BULLETIN BOARD", bx+50, by+15);
+  // Notes
+  const active = ideas.filter(i => i.phase !== "done").slice(0,3);
+  const colors = ["rgba(124,58,237,0.2)", "rgba(6,182,212,0.2)", "rgba(236,72,153,0.2)"];
+  active.forEach((idea, i) => {
+    const nx = bx + 10 + i * 70;
+    const ny = by + 30;
+    cx.fillStyle = colors[i];
+    drawRR(cx, nx, ny, 62, 65, 4);
+    cx.fill();
+    cx.fillStyle = phaseColors[idea.phase];
+    cx.beginPath();
+    cx.arc(nx + 31, ny - 2, 4, 0, Math.PI*2);
+    cx.fill();
+    cx.fillStyle = "#e4e4e7";
+    cx.font = "7px Inter";
+    const t = idea.title.length > 9 ? idea.title.slice(0,8)+"…" : idea.title;
+    cx.fillText(t, nx+4, ny+16);
+    cx.fillStyle = phaseColors[idea.phase];
+    cx.font = "6px Inter";
+    cx.fillText(idea.phase.toUpperCase(), nx+4, ny+28);
+  });
+}
+
+function drawConference(cx) {
+  const rx = 640, ry = 20, rw = 230, rh = 130;
+  // Room
+  cx.fillStyle = "rgba(255,255,255,0.02)";
+  drawRR(cx, rx, ry, rw, rh, 10);
+  cx.fill();
+  cx.strokeStyle = "#2a2a35";
+  cx.lineWidth = 2;
+  drawRR(cx, rx, ry, rw, rh, 10);
+  cx.stroke();
+  // Table
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, rx+40, ry+35, 150, 55, 10);
+  cx.fill();
+  // Chairs
+  cx.fillStyle = "#3a3a45";
+  [[70,28],[115,28],[160,28],[70,98],[115,98],[160,98]].forEach(([ox,oy]) => {
+    cx.beginPath();
+    cx.arc(rx+ox, ry+oy, 9, 0, Math.PI*2);
+    cx.fill();
+  });
+  // Screen
+  cx.fillStyle = "#1c1c22";
+  drawRR(cx, rx+65, ry+5, 100, 22, 4);
+  cx.fill();
+  cx.fillStyle = "#7c3aed";
+  cx.font = "bold 8px Inter";
+  cx.fillText("CONFERENCE", rx+76, ry+19);
+  // Label
+  cx.fillStyle = "#52525b";
+  cx.font = "8px Inter";
+  cx.fillText("🗓️ Daily Standup", rx+70, ry+rh+14);
+}
+
+function drawSecurityPost(cx) {
+  // Security desk
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, 30, 340, 80, 8, 4);
+  cx.fill();
+  cx.fillStyle = "#1c1c22";
+  cx.fillRect(34, 348, 4, 16);
+  cx.fillRect(102, 348, 4, 16);
+  // Monitors (security cams)
+  cx.fillStyle = "#1c1c22";
+  drawRR(cx, 38, 306, 28, 22, 3);
+  cx.fill();
+  cx.fillStyle = "#0f172a";
+  cx.fillRect(40, 308, 24, 16);
+  cx.fillStyle = "rgba(245,158,11,0.2)";
+  cx.fillRect(40, 308, 24, 16);
+  cx.fillStyle = "#f59e0b";
+  cx.font = "5px JetBrains Mono";
+  cx.fillText("CAM-01", 42, 316);
+  cx.fillText("SECURE", 42, 322);
+  // Second monitor
+  cx.fillStyle = "#1c1c22";
+  drawRR(cx, 72, 306, 28, 22, 3);
+  cx.fill();
+  cx.fillStyle = "#0f172a";
+  cx.fillRect(74, 308, 24, 16);
+  cx.fillStyle = "rgba(245,158,11,0.2)";
+  cx.fillRect(74, 308, 24, 16);
+  cx.fillStyle = "#f59e0b";
+  cx.font = "5px JetBrains Mono";
+  cx.fillText("CAM-02", 76, 316);
+  cx.fillText("SECURE", 76, 322);
+}
+
+function drawWaterCooler(cx) {
+  const wx = 200, wy = 300;
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, wx, wy, 36, 55, 6);
+  cx.fill();
+  cx.fillStyle = "rgba(6,182,212,0.3)";
+  cx.beginPath();
+  cx.arc(wx+18, wy-4, 16, 0, Math.PI*2);
+  cx.fill();
+  cx.fillStyle = "rgba(6,182,212,0.15)";
+  cx.beginPath();
+  cx.arc(wx+18, wy-4, 13, 0, Math.PI*2);
+  cx.fill();
+  cx.fillStyle = "#52525b";
+  cx.font = "8px Inter";
+  cx.fillText("💧", wx+8, wy+68);
+}
+
+function drawPlant(cx) {
+  cx.fillStyle = "#2a2a35";
+  drawRR(cx, 18, 230, 24, 28, 4);
+  cx.fill();
+  cx.fillStyle = "#22c55e";
+  cx.beginPath();
+  cx.arc(30, 218, 16, 0, Math.PI*2);
+  cx.fill();
+  cx.fillStyle = "rgba(34,197,94,0.5)";
+  cx.beginPath();
+  cx.arc(24, 212, 10, 0, Math.PI*2);
+  cx.fill();
+}
+
+function drawAgent(cx, agent, pos, idx) {
+  const x = pos.x, y = pos.y;
+  const hover = Math.sin(frame * 0.03 + idx * 2.5) * 3;
+  const by = y + hover;
+
+  // Glow
+  const grad = cx.createRadialGradient(x+14, by+25, 0, x+14, by+25, 35);
+  grad.addColorStop(0, agent.accent + "0.1)");
+  grad.addColorStop(1, "transparent");
+  cx.fillStyle = grad;
+  cx.fillRect(x-20, by-10, 68, 70);
+
+  // Body
+  cx.fillStyle = agent.color;
+  drawRR(cx, x+2, by+18, 24, 24, 6);
+  cx.fill();
+
+  // Head
+  cx.fillStyle = "#e4d5c0";
+  cx.beginPath();
+  cx.arc(x+14, by+10, 12, 0, Math.PI*2);
+  cx.fill();
+
+  // Eyes
+  cx.fillStyle = "#1c1c22";
+  cx.beginPath();
+  cx.arc(x+10, by+9, 2, 0, Math.PI*2);
+  cx.fill();
+  cx.beginPath();
+  cx.arc(x+18, by+9, 2, 0, Math.PI*2);
+  cx.fill();
+
+  // Mouth
+  cx.strokeStyle = "#1c1c22";
+  cx.lineWidth = 1;
+  cx.beginPath();
+  cx.arc(x+14, by+14, 3, 0.1, Math.PI-0.1);
+  cx.stroke();
+
+  // Name
+  cx.fillStyle = agent.color;
+  cx.font = "bold 10px Inter";
+  cx.textAlign = "center";
+  cx.fillText(agent.name, x+14, by-6);
+  cx.textAlign = "left";
+
+  // Status indicator
+  if (agent.status === "busy") {
+    cx.fillStyle = "rgba(22,22,26,0.85)";
+    drawRR(cx, x+28, by-10, 42, 18, 8);
+    cx.fill();
+    cx.fillStyle = agent.color;
+    cx.font = "8px Inter";
+    const dots = "●".repeat((Math.floor(frame/20)%3)+1);
+    cx.fillText(dots, x+34, by+2);
+  }
+}
+
+function drawFloor() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Background
+  ctx.fillStyle = "#0f0f14";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Subtle grid
+  ctx.strokeStyle = "rgba(255,255,255,0.02)";
+  ctx.lineWidth = 1;
+  for (let gx = 0; gx < canvas.width; gx += 40) {
+    ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,canvas.height); ctx.stroke();
+  }
+  for (let gy = 0; gy < canvas.height; gy += 40) {
+    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(canvas.width,gy); ctx.stroke();
+  }
+
+  // Zone labels
+  ctx.fillStyle = "#2a2a35";
+  ctx.font = "9px Inter";
+  ctx.fillText("BOB'S OFFICE", 90, 140);
+  ctx.fillText("WEBSTER'S DESK", 375, 240);
+  ctx.fillText("LING'S DESK", 675, 240);
+  ctx.fillText("SECURITY POST", 30, 290);
+
+  // Furniture
+  drawDesk(ctx, 70, 210);
+  drawDesk(ctx, 350, 310);
+  drawDesk(ctx, 630, 310);
+  drawBulletinBoard(ctx);
+  drawConference(ctx);
+  drawSecurityPost(ctx);
+  drawWaterCooler(ctx);
+  drawPlant(ctx);
+
+  // Move & draw agents
+  agentPos.forEach((p,i) => {
+    p.x += (p.targetX - p.x) * 0.04;
+    p.y += (p.targetY - p.y) * 0.04;
+  });
+  team.forEach((a,i) => drawAgent(ctx, a, agentPos[i], i));
+
+  frame++;
+  requestAnimationFrame(drawFloor);
+}
+
+// --- MOVEMENT ---
+function sendHome(i) { agentPos[i].targetX = agentPos[i].homeX; agentPos[i].targetY = agentPos[i].homeY; }
+function sendToBulletin(i) { agentPos[i].targetX = 360 + i*50; agentPos[i].targetY = 110; }
+function sendToConference() {
+  agentPos[0].targetX = 670; agentPos[0].targetY = 100;
+  agentPos[1].targetX = 720; agentPos[1].targetY = 100;
+  agentPos[2].targetX = 770; agentPos[2].targetY = 100;
+  agentPos[3].targetX = 820; agentPos[3].targetY = 100;
+}
+function sendToCollab(a,b) {
+  agentPos[a].targetX = 340; agentPos[a].targetY = 200;
+  agentPos[b].targetX = 400; agentPos[b].targetY = 200;
+}
+
+// --- WORKFLOW ---
+function seedIdea() {
+  const used = new Set(ideas.map(i => i.title));
+  const avail = ideaTemplates.filter(t => !used.has(t.title));
+  const tmpl = avail.length > 0 ? avail[Math.floor(Math.random()*avail.length)] : ideaTemplates[Math.floor(Math.random()*ideaTemplates.length)];
+  ideas.push({ id: nextIdeaId++, title: tmpl.title, desc: tmpl.desc, phase: "research", phaseTime: 0 });
+  addLog("Webster", `Started researching: "${tmpl.title}"`);
+  setStatus("res", "busy", `Researching: ${tmpl.title}`);
+}
+
+function advancePhase(idea) {
+  const idx = phases.indexOf(idea.phase);
+  if (idx >= phases.length-1) return;
+  idea.phase = phases[idx+1];
+  idea.phaseTime = 0;
+  switch(idea.phase) {
+    case "review":
+      sendToBulletin(0);
+      addLog("Webster", `📌 Posted to bulletin: "${idea.title}"`);
+      addLog("Bob", `Reviewing: "${idea.title}"`);
+      setStatus("res","idle","Waiting for review");
+      setStatus("mgr","busy",`Reviewing: ${idea.title}`);
+      break;
+    case "collab":
+      sendToCollab(1,2);
+      addLog("Bob", `Approved for collab: "${idea.title}"`);
+      addLog("Webster", `Briefing Ling on: "${idea.title}"`);
+      setStatus("res","busy",`Explaining: ${idea.title}`);
+      setStatus("dev","busy",`Understanding: ${idea.title}`);
+      setStatus("mgr","active","Monitoring progress");
+      sendHome(0);
+      addMeeting(`Bob approved "${idea.title}" — Webster & Ling collaborating.`);
+      break;
+    case "building":
+      sendHome(1); sendHome(2);
+      addLog("Ling", `⌨️ Building: "${idea.title}"`);
+      setStatus("res","active","Scanning for new ideas");
+      setStatus("dev","busy",`Building: ${idea.title}`);
+      break;
+    case "approval":
+      addLog("Ling", `Build complete: "${idea.title}"`);
+      addLog("Bob", `⚠️ Needs CEO approval: "${idea.title}"`, true);
+      sendToBulletin(0);
+      setStatus("mgr","busy",`Awaiting CEO approval: ${idea.title}`);
+      setStatus("dev","idle","Waiting for approval");
+      break;
+  }
+}
+
+function tickIdeas() {
+  ideas.forEach(idea => {
+    if (idea.phase === "done" || idea.phase === "approval") return;
+    idea.phaseTime += 2000;
+    if (idea.phaseTime >= phaseDurations[idea.phase]) advancePhase(idea);
+  });
+  ideas.filter(i => i.phase === "approval").forEach(idea => {
+    idea.phaseTime += 2000;
+    if (idea.phaseTime >= 15000) {
+      idea.phase = "done";
+      addLog("Bob", `✅ Shipped: "${idea.title}"`);
+      addMeeting(`"${idea.title}" shipped! 🎉`);
+      team.forEach((_,i) => sendHome(i));
+      setStatus("mgr","active","Sipping coffee, overseeing operations");
+      setStatus("dev","active","IDE loaded, ready to code");
+      setStatus("sec","active","Patrolling the office perimeter");
+      setTimeout(() => { if (ideas.filter(i=>i.phase!=="done").length<2) seedIdea(); }, 4000);
+    }
+  });
+  renderAll();
+}
+
+function holdStandup() {
+  sendToConference();
+  addLog("Bob", "📢 Daily standup — conference room!");
+  const notes = [];
+  team.forEach(a => notes.push(`<strong>${a.name}:</strong> ${a.doing}`));
+  const active = ideas.filter(i => i.phase !== "done");
+  if (active.length) notes.push(`<strong>Pipeline:</strong> ${active.length} idea(s) active`);
+  setTimeout(() => {
+    addMeeting("— Daily Standup —");
+    notes.forEach(n => addMeeting(n));
+    addLog("Bob", "Standup done. Back to work.");
+    team.forEach((_,i) => sendHome(i));
+  }, 5000);
+}
+
+// --- UI HELPERS ---
+function setStatus(id, status, doing) {
+  const a = team.find(t => t.id === id);
+  if (a) { a.status = status; a.doing = doing; }
+}
+
+function addLog(who, what, isAlert) {
+  const box = document.getElementById("logBox");
+  const now = new Date().toLocaleTimeString("en-US", { hour12: true, hour: "numeric", minute: "2-digit", second: "2-digit" });
+  const cls = isAlert ? "log-alert" : "log-what";
+  const line = document.createElement("div");
+  line.innerHTML = `<span class="log-time">${now}</span>  <span class="log-who">${who}</span> — <span class="${cls}">${what}</span>`;
+  box.appendChild(line);
+  box.scrollTop = box.scrollHeight;
+  if (box.children.length > 80) box.removeChild(box.firstChild);
+}
+
+function addMeeting(text) {
+  meetingNotes.push(text);
+  if (meetingNotes.length > 20) meetingNotes.shift();
+  const box = document.getElementById("meetingBox");
+  box.innerHTML = `<div class="meeting-title">Meeting Notes</div>` +
+    meetingNotes.map(n => `<div class="meeting-item">${n}</div>`).join("");
+  box.scrollTop = box.scrollHeight;
+}
+
+function renderAll() {
+  // Team
+  const tc = document.getElementById("teamCards");
+  tc.innerHTML = "";
+  team.forEach(a => {
+    tc.innerHTML += `
+      <div class="employee-card">
+        <div class="emp-avatar ${a.id}">${a.emoji}</div>
+        <div>
+          <div class="emp-name"><span class="status-dot s-${a.status}"></span>${a.name}</div>
+          <div class="emp-role">${a.role}</div>
+          <div class="emp-status">▸ ${a.doing}</div>
+        </div>
+      </div>`;
+  });
+
+  // Bulletin
+  const bb = document.getElementById("bulletinBoard");
+  const sorted = [...ideas].sort((a,b) => {
+    if (a.phase==="done" && b.phase!=="done") return 1;
+    return b.id - a.id;
+  });
+  if (!sorted.length) {
+    bb.innerHTML = '<div class="bulletin-empty">No ideas yet — Ripley is scanning...</div>';
+  } else {
+    bb.innerHTML = sorted.map(idea => {
+      const prog = idea.phase==="done" ? 100 : idea.phase==="approval" ? 90 :
+        Math.min(95, Math.floor(idea.phaseTime / phaseDurations[idea.phase] * 100));
+      return `
+        <div class="idea-card phase-${idea.phase}">
+          <div class="idea-title">💡 ${idea.title}</div>
+          <span class="idea-tag tag-${idea.phase}">${phaseLabels[idea.phase]}</span>
+          <div class="idea-desc">${idea.desc}</div>
+          <div class="idea-progress">
+            <div class="idea-progress-fill" style="width:${prog}%;background:${phaseColors[idea.phase]}"></div>
+          </div>
+        </div>`;
+    }).join("");
+  }
+
+  // Workflow
+  const bar = document.getElementById("workflowBar");
+  const active = ideas.find(i => i.phase !== "done");
+  const cur = active ? active.phase : null;
+  const curIdx = cur ? phases.indexOf(cur) : -1;
+  bar.innerHTML = phases.map((p,i) => {
+    const cls = p===cur ? "active" : i<curIdx ? "completed" : "";
+    const arrow = i>0 ? '<span class="wf-arrow">→</span>' : '';
+    return `${arrow}<div class="wf-step ${cls}">${p}</div>`;
+  }).join("");
+
+  // Stats
+  document.getElementById("statShipped").textContent = ideas.filter(i=>i.phase==="done").length;
+  document.getElementById("statActive").textContent = ideas.filter(i=>i.phase!=="done").length;
+  const morale = ["☕","😊","🔥","💪","😎","🎯","🧠","✨"];
+  document.getElementById("statMorale").textContent = morale[Math.floor(Date.now()/30000) % morale.length];
+}
+
+// --- UPTIME ---
+setInterval(() => {
+  const e = Math.floor((Date.now()-startTime)/1000);
+  const h=String(Math.floor(e/3600)).padStart(2,"0");
+  const m=String(Math.floor((e%3600)/60)).padStart(2,"0");
+  const s=String(e%60).padStart(2,"0");
+  document.getElementById("statUptime").textContent=`${h}:${m}:${s}`;
+}, 1000);
+
+// --- INIT ---
+addLog("System", "INBOX INC. is online.");
+addLog("Bob", "Morning team. Let's build something great.");
+addLog("Webster", "Coffee in hand. Scanning for ideas...");
+addLog("Ling", "IDE loaded. Vim mode on. Ready.");
+addLog("Vladimir", "Perimeter secure. All clear, boss.");
+
+drawFloor();
+renderAll();
+setTimeout(seedIdea, 3000);
+setTimeout(holdStandup, 8000);
+setInterval(tickIdeas, 2000);
+setInterval(() => {
+  if (ideas.filter(i=>i.phase!=="done").length < 2 && Math.random()>0.4) seedIdea();
+}, 22000);
+setInterval(holdStandup, 120000);
+
+// Vladimir's patrol route
+const patrolPoints = [
+  {x:50,y:320}, {x:200,y:380}, {x:500,y:380}, {x:800,y:380},
+  {x:800,y:160}, {x:500,y:160}, {x:200,y:160}, {x:50,y:320}
+];
+let patrolIdx = 0;
+setInterval(() => {
+  const sec = team.find(t => t.id === "sec");
+  if (sec && sec.status === "active") {
+    patrolIdx = (patrolIdx + 1) % patrolPoints.length;
+    agentPos[3].targetX = patrolPoints[patrolIdx].x;
+    agentPos[3].targetY = patrolPoints[patrolIdx].y;
+    const msgs = [
+      "Perimeter check — all clear.",
+      "Checking server room access logs.",
+      "Scanning badges at the entrance.",
+      "Monitoring security cameras.",
+      "Nothing suspicious. Continuing patrol.",
+      "Tested fire exit — operational.",
+    ];
+    if (Math.random() > 0.5) addLog("Vladimir", msgs[Math.floor(Math.random()*msgs.length)]);
+  }
+}, 10000);
+</script>
+</body>
+</html>
