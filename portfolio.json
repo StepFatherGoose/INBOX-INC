@@ -1,0 +1,463 @@
+{
+  "updated_at": "2026-02-11 07:42:14 MST",
+  "updated_epoch": 1770820934,
+  "account": {
+    "equity": 96765.33,
+    "cash": -24431.17,
+    "buying_power": 14097.16,
+    "portfolio_value": 96765.33,
+    "initial_capital": 100000.0,
+    "total_pl": -3234.6699999999983,
+    "total_pl_pct": -3.2346699999999986
+  },
+  "categories": {
+    "0DTE Options": {
+      "market_value": 1668.0,
+      "unrealized_pl": -768.0,
+      "count": 2
+    },
+    "Blue Chips": {
+      "market_value": 41959.892,
+      "unrealized_pl": -232.268,
+      "count": 7
+    },
+    "INBOX ETF": {
+      "market_value": 21002.2426,
+      "unrealized_pl": -70.38739999999999,
+      "count": 6
+    },
+    "LEAPs": {
+      "market_value": 56565.0,
+      "unrealized_pl": -2165.0,
+      "count": 5
+    }
+  },
+  "positions": [
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "0DTE Options",
+      "symbol": "QQQ260211C00615000",
+      "qty": 4,
+      "avg_entry": 3.375,
+      "current_price": 2.3,
+      "market_value": 920.0,
+      "cost_basis": 1350.0,
+      "unrealized_pl": -430.0,
+      "unrealized_pl_pct": -31.852000000000004,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "0DTE Options",
+      "symbol": "SPY260211C00695000",
+      "qty": 4,
+      "avg_entry": 2.715,
+      "current_price": 1.87,
+      "market_value": 748.0,
+      "cost_basis": 1086.0,
+      "unrealized_pl": -338.0,
+      "unrealized_pl_pct": -31.123,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "AAPL",
+      "qty": 30,
+      "avg_entry": 275.8,
+      "current_price": 276.01,
+      "market_value": 8280.3,
+      "cost_basis": 8274.0,
+      "unrealized_pl": 6.3,
+      "unrealized_pl_pct": 0.076,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "AMD",
+      "qty": 35,
+      "avg_entry": 216.441429,
+      "current_price": 216.5692,
+      "market_value": 7579.922,
+      "cost_basis": 7575.45,
+      "unrealized_pl": 4.472,
+      "unrealized_pl_pct": 0.059000000000000004,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "AMZN",
+      "qty": 23,
+      "avg_entry": 207.782174,
+      "current_price": 205.63,
+      "market_value": 4729.49,
+      "cost_basis": 4778.99,
+      "unrealized_pl": -49.5,
+      "unrealized_pl_pct": -1.036,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "GOOGL",
+      "qty": 26,
+      "avg_entry": 319.503077,
+      "current_price": 318.13,
+      "market_value": 8271.38,
+      "cost_basis": 8307.08,
+      "unrealized_pl": -35.7,
+      "unrealized_pl_pct": -0.43,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "META",
+      "qty": 5,
+      "avg_entry": 676.74,
+      "current_price": 671.245,
+      "market_value": 3356.225,
+      "cost_basis": 3383.7,
+      "unrealized_pl": -27.475,
+      "unrealized_pl_pct": -0.812,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "MSFT",
+      "qty": 21,
+      "avg_entry": 415.231429,
+      "current_price": 409.245,
+      "market_value": 8594.145,
+      "cost_basis": 8719.86,
+      "unrealized_pl": -125.715,
+      "unrealized_pl_pct": -1.442,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "Blue Chips",
+      "symbol": "NVDA",
+      "qty": 6,
+      "avg_entry": 192.18,
+      "current_price": 191.405,
+      "market_value": 1148.43,
+      "cost_basis": 1153.08,
+      "unrealized_pl": -4.65,
+      "unrealized_pl_pct": -0.40299999999999997,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "COIN",
+      "qty": 26,
+      "avg_entry": 156.867308,
+      "current_price": 155.2601,
+      "market_value": 4036.7626,
+      "cost_basis": 4078.55,
+      "unrealized_pl": -41.7874,
+      "unrealized_pl_pct": -1.0250000000000001,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "PLTR",
+      "qty": 30,
+      "avg_entry": 137.94,
+      "current_price": 136.875,
+      "market_value": 4106.25,
+      "cost_basis": 4138.2,
+      "unrealized_pl": -31.95,
+      "unrealized_pl_pct": -0.772,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "QQQ",
+      "qty": 10,
+      "avg_entry": 616.29,
+      "current_price": 615.64,
+      "market_value": 6156.4,
+      "cost_basis": 6162.9,
+      "unrealized_pl": -6.5,
+      "unrealized_pl_pct": -0.105,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "SOFI",
+      "qty": 84,
+      "avg_entry": 20.83,
+      "current_price": 20.7725,
+      "market_value": 1744.89,
+      "cost_basis": 1749.72,
+      "unrealized_pl": -4.83,
+      "unrealized_pl_pct": -0.27599999999999997,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "SPY",
+      "qty": 4,
+      "avg_entry": 696.99,
+      "current_price": 695.635,
+      "market_value": 2782.54,
+      "cost_basis": 2787.96,
+      "unrealized_pl": -5.42,
+      "unrealized_pl_pct": -0.194,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "INBOX ETF",
+      "symbol": "TSLA",
+      "qty": 5,
+      "avg_entry": 431.06,
+      "current_price": 435.08,
+      "market_value": 2175.4,
+      "cost_basis": 2155.3,
+      "unrealized_pl": 20.1,
+      "unrealized_pl_pct": 0.9329999999999999,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "LEAPs",
+      "symbol": "AAPL270115C00250000",
+      "qty": 4,
+      "avg_entry": 48.55,
+      "current_price": 48.2,
+      "market_value": 19280.0,
+      "cost_basis": 19420.0,
+      "unrealized_pl": -140.0,
+      "unrealized_pl_pct": -0.721,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "LEAPs",
+      "symbol": "AMZN270115C00185000",
+      "qty": 2,
+      "avg_entry": 45.05,
+      "current_price": 43.05,
+      "market_value": 8610.0,
+      "cost_basis": 9010.0,
+      "unrealized_pl": -400.0,
+      "unrealized_pl_pct": -4.44,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "LEAPs",
+      "symbol": "GOOGL270115C00290000",
+      "qty": 2,
+      "avg_entry": 65.6,
+      "current_price": 61.35,
+      "market_value": 12270.0,
+      "cost_basis": 13120.0,
+      "unrealized_pl": -850.0,
+      "unrealized_pl_pct": -6.479,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "LEAPs",
+      "symbol": "MSFT270115C00380000",
+      "qty": 1,
+      "avg_entry": 74.3,
+      "current_price": 68.05,
+      "market_value": 6805.0,
+      "cost_basis": 7430.0,
+      "unrealized_pl": -625.0,
+      "unrealized_pl_pct": -8.412,
+      "side": "long"
+    },
+    {
+      "platform": "Alpaca (Paper)",
+      "category": "LEAPs",
+      "symbol": "NVDA270115C00170000",
+      "qty": 2,
+      "avg_entry": 48.75,
+      "current_price": 48.0,
+      "market_value": 9600.0,
+      "cost_basis": 9750.0,
+      "unrealized_pl": -150.0,
+      "unrealized_pl_pct": -1.538,
+      "side": "long"
+    }
+  ],
+  "kalshi_positions": [],
+  "recent_orders": [
+    {
+      "symbol": "AAPL270115C00250000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 48.65,
+      "filled_at": "2026-02-11T14:30:48.128414Z",
+      "type": "market"
+    },
+    {
+      "symbol": "QQQ260211C00615000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 3.5,
+      "filled_at": "2026-02-11T14:30:48.018139Z",
+      "type": "market"
+    },
+    {
+      "symbol": "SPY260211C00695000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 2.78,
+      "filled_at": "2026-02-11T14:30:47.594935Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AMZN270115C00185000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 45.05,
+      "filled_at": "2026-02-11T14:30:38.346213Z",
+      "type": "market"
+    },
+    {
+      "symbol": "NVDA270115C00170000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 48.75,
+      "filled_at": "2026-02-11T14:30:37.508014Z",
+      "type": "market"
+    },
+    {
+      "symbol": "GOOGL270115C00290000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 65.6,
+      "filled_at": "2026-02-11T14:30:36.755195Z",
+      "type": "market"
+    },
+    {
+      "symbol": "MSFT270115C00380000",
+      "side": "buy",
+      "qty": 1,
+      "avg_price": 74.3,
+      "filled_at": "2026-02-11T14:30:35.911649Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AAPL270115C00250000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 48.45,
+      "filled_at": "2026-02-11T14:30:35.16576Z",
+      "type": "market"
+    },
+    {
+      "symbol": "QQQ260211C00615000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 3.25,
+      "filled_at": "2026-02-11T14:30:34.853698Z",
+      "type": "market"
+    },
+    {
+      "symbol": "SPY260211C00695000",
+      "side": "buy",
+      "qty": 2,
+      "avg_price": 2.65,
+      "filled_at": "2026-02-11T14:30:34.522551Z",
+      "type": "market"
+    },
+    {
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 30,
+      "avg_price": 137.94,
+      "filled_at": "2026-02-11T14:30:35.50467Z",
+      "type": "market"
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "qty": 10,
+      "avg_price": 616.29,
+      "filled_at": "2026-02-11T14:30:18.146735Z",
+      "type": "market"
+    },
+    {
+      "symbol": "META",
+      "side": "buy",
+      "qty": 5,
+      "avg_price": 676.74,
+      "filled_at": "2026-02-11T14:31:19.873444Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 30,
+      "avg_price": 275.8,
+      "filled_at": "2026-02-11T14:30:14.592369Z",
+      "type": "market"
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 20,
+      "avg_price": 415.21,
+      "filled_at": "2026-02-11T14:30:42.696352Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AMD",
+      "side": "buy",
+      "qty": 30,
+      "avg_price": 216.41,
+      "filled_at": "2026-02-11T14:30:28.100852Z",
+      "type": "market"
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": 25,
+      "avg_price": 319.47,
+      "filled_at": "2026-02-11T14:30:13.014961Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 5,
+      "avg_price": 207.97,
+      "filled_at": "2026-02-11T14:31:03.782006Z",
+      "type": "market"
+    },
+    {
+      "symbol": "AMD",
+      "side": "buy",
+      "qty": 5,
+      "avg_price": 216.63,
+      "filled_at": "2026-02-11T14:31:16.221195Z",
+      "type": "market"
+    }
+  ],
+  "rules": {
+    "alpaca_daily_limit": 10000,
+    "kalshi_max_bet": 20,
+    "kalshi_max_deployed": 200,
+    "leap_sell_bracket_1": "50% at 30% profit",
+    "leap_sell_bracket_2": "50% at 70% profit",
+    "odte_allocation": "10%",
+    "blue_chip_allocation": "40%",
+    "leap_allocation": "25%",
+    "etf_allocation": "25%"
+  }
+}
