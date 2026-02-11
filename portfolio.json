@@ -1,34 +1,34 @@
 {
-  "updated_at": "2026-02-11 08:15:05 MST",
-  "updated_epoch": 1770822905,
+  "updated_at": "2026-02-11 08:30:13 MST",
+  "updated_epoch": 1770823813,
   "account": {
-    "equity": 93803.81,
+    "equity": 93139.1,
     "cash": -24431.17,
-    "buying_power": 13414.64,
-    "portfolio_value": 93803.81,
+    "buying_power": 13139.93,
+    "portfolio_value": 93139.1,
     "initial_capital": 100000.0,
-    "total_pl": -6196.190000000002,
-    "total_pl_pct": -6.196190000000002
+    "total_pl": -6860.899999999994,
+    "total_pl_pct": -6.860899999999995
   },
   "categories": {
     "0DTE Options": {
-      "market_value": 368.0,
-      "unrealized_pl": -2068.0,
+      "market_value": 188.0,
+      "unrealized_pl": -2248.0,
       "count": 2
     },
     "Blue Chips": {
-      "market_value": 41578.9015,
-      "unrealized_pl": -613.2585,
+      "market_value": 41426.6529,
+      "unrealized_pl": -765.5071,
       "count": 7
     },
     "INBOX ETF": {
-      "market_value": 20695.2706,
-      "unrealized_pl": -377.3594,
+      "market_value": 20573.335,
+      "unrealized_pl": -499.295,
       "count": 6
     },
     "LEAPs": {
-      "market_value": 55590.0,
-      "unrealized_pl": -3140.0,
+      "market_value": 55380.0,
+      "unrealized_pl": -3350.0,
       "count": 5
     }
   },
@@ -39,11 +39,11 @@
       "symbol": "QQQ260211C00615000",
       "qty": 4,
       "avg_entry": 3.375,
-      "current_price": 0.48,
-      "market_value": 192.0,
+      "current_price": 0.25,
+      "market_value": 100.0,
       "cost_basis": 1350.0,
-      "unrealized_pl": -1158.0,
-      "unrealized_pl_pct": -85.77799999999999,
+      "unrealized_pl": -1250.0,
+      "unrealized_pl_pct": -92.593,
       "side": "long"
     },
     {
@@ -52,11 +52,11 @@
       "symbol": "SPY260211C00695000",
       "qty": 4,
       "avg_entry": 2.715,
-      "current_price": 0.44,
-      "market_value": 176.0,
+      "current_price": 0.22,
+      "market_value": 88.0,
       "cost_basis": 1086.0,
-      "unrealized_pl": -910.0,
-      "unrealized_pl_pct": -83.794,
+      "unrealized_pl": -998.0,
+      "unrealized_pl_pct": -91.89699999999999,
       "side": "long"
     },
     {
@@ -65,11 +65,11 @@
       "symbol": "AAPL",
       "qty": 30,
       "avg_entry": 275.8,
-      "current_price": 276.14,
-      "market_value": 8284.2,
+      "current_price": 277.32,
+      "market_value": 8319.6,
       "cost_basis": 8274.0,
-      "unrealized_pl": 10.2,
-      "unrealized_pl_pct": 0.123,
+      "unrealized_pl": 45.6,
+      "unrealized_pl_pct": 0.551,
       "side": "long"
     },
     {
@@ -78,11 +78,11 @@
       "symbol": "AMD",
       "qty": 35,
       "avg_entry": 216.441429,
-      "current_price": 212.4199,
-      "market_value": 7434.6965,
+      "current_price": 209.8601,
+      "market_value": 7345.1035,
       "cost_basis": 7575.45,
-      "unrealized_pl": -140.7535,
-      "unrealized_pl_pct": -1.8579999999999999,
+      "unrealized_pl": -230.3465,
+      "unrealized_pl_pct": -3.041,
       "side": "long"
     },
     {
@@ -91,11 +91,11 @@
       "symbol": "AMZN",
       "qty": 23,
       "avg_entry": 207.782174,
-      "current_price": 205.355,
-      "market_value": 4723.165,
+      "current_price": 205.15,
+      "market_value": 4718.45,
       "cost_basis": 4778.99,
-      "unrealized_pl": -55.825,
-      "unrealized_pl_pct": -1.168,
+      "unrealized_pl": -60.54,
+      "unrealized_pl_pct": -1.2670000000000001,
       "side": "long"
     },
     {
@@ -104,11 +104,11 @@
       "symbol": "GOOGL",
       "qty": 26,
       "avg_entry": 319.503077,
-      "current_price": 314.28,
-      "market_value": 8171.28,
+      "current_price": 311.8,
+      "market_value": 8106.8,
       "cost_basis": 8307.08,
-      "unrealized_pl": -135.8,
-      "unrealized_pl_pct": -1.635,
+      "unrealized_pl": -200.28,
+      "unrealized_pl_pct": -2.411,
       "side": "long"
     },
     {
@@ -117,11 +117,11 @@
       "symbol": "META",
       "qty": 5,
       "avg_entry": 676.74,
-      "current_price": 663.71,
-      "market_value": 3318.55,
+      "current_price": 662.21,
+      "market_value": 3311.05,
       "cost_basis": 3383.7,
-      "unrealized_pl": -65.15,
-      "unrealized_pl_pct": -1.925,
+      "unrealized_pl": -72.65,
+      "unrealized_pl_pct": -2.147,
       "side": "long"
     },
     {
@@ -130,11 +130,11 @@
       "symbol": "MSFT",
       "qty": 21,
       "avg_entry": 415.231429,
-      "current_price": 405.05,
-      "market_value": 8506.05,
+      "current_price": 404.35,
+      "market_value": 8491.35,
       "cost_basis": 8719.86,
-      "unrealized_pl": -213.81,
-      "unrealized_pl_pct": -2.452,
+      "unrealized_pl": -228.51,
+      "unrealized_pl_pct": -2.621,
       "side": "long"
     },
     {
@@ -143,11 +143,11 @@
       "symbol": "NVDA",
       "qty": 6,
       "avg_entry": 192.18,
-      "current_price": 190.16,
-      "market_value": 1140.96,
+      "current_price": 189.0499,
+      "market_value": 1134.2994,
       "cost_basis": 1153.08,
-      "unrealized_pl": -12.12,
-      "unrealized_pl_pct": -1.051,
+      "unrealized_pl": -18.7806,
+      "unrealized_pl_pct": -1.629,
       "side": "long"
     },
     {
@@ -156,11 +156,11 @@
       "symbol": "COIN",
       "qty": 26,
       "avg_entry": 156.867308,
-      "current_price": 151.8201,
-      "market_value": 3947.3226,
+      "current_price": 150.645,
+      "market_value": 3916.77,
       "cost_basis": 4078.55,
-      "unrealized_pl": -131.2274,
-      "unrealized_pl_pct": -3.218,
+      "unrealized_pl": -161.78,
+      "unrealized_pl_pct": -3.9669999999999996,
       "side": "long"
     },
     {
@@ -169,11 +169,11 @@
       "symbol": "PLTR",
       "qty": 30,
       "avg_entry": 137.94,
-      "current_price": 134.7416,
-      "market_value": 4042.248,
+      "current_price": 133.61,
+      "market_value": 4008.3,
       "cost_basis": 4138.2,
-      "unrealized_pl": -95.952,
-      "unrealized_pl_pct": -2.319,
+      "unrealized_pl": -129.9,
+      "unrealized_pl_pct": -3.1390000000000002,
       "side": "long"
     },
     {
@@ -182,11 +182,11 @@
       "symbol": "QQQ",
       "qty": 10,
       "avg_entry": 616.29,
-      "current_price": 610.5,
-      "market_value": 6105.0,
+      "current_price": 608.35,
+      "market_value": 6083.5,
       "cost_basis": 6162.9,
-      "unrealized_pl": -57.9,
-      "unrealized_pl_pct": -0.9390000000000001,
+      "unrealized_pl": -79.4,
+      "unrealized_pl_pct": -1.288,
       "side": "long"
     },
     {
@@ -195,11 +195,11 @@
       "symbol": "SOFI",
       "qty": 84,
       "avg_entry": 20.83,
-      "current_price": 20.385,
-      "market_value": 1712.34,
+      "current_price": 20.185,
+      "market_value": 1695.54,
       "cost_basis": 1749.72,
-      "unrealized_pl": -37.38,
-      "unrealized_pl_pct": -2.136,
+      "unrealized_pl": -54.18,
+      "unrealized_pl_pct": -3.096,
       "side": "long"
     },
     {
@@ -208,11 +208,11 @@
       "symbol": "SPY",
       "qty": 4,
       "avg_entry": 696.99,
-      "current_price": 691.54,
-      "market_value": 2766.16,
+      "current_price": 689.75,
+      "market_value": 2759.0,
       "cost_basis": 2787.96,
-      "unrealized_pl": -21.8,
-      "unrealized_pl_pct": -0.782,
+      "unrealized_pl": -28.96,
+      "unrealized_pl_pct": -1.039,
       "side": "long"
     },
     {
@@ -221,11 +221,11 @@
       "symbol": "TSLA",
       "qty": 5,
       "avg_entry": 431.06,
-      "current_price": 424.44,
-      "market_value": 2122.2,
+      "current_price": 422.045,
+      "market_value": 2110.225,
       "cost_basis": 2155.3,
-      "unrealized_pl": -33.1,
-      "unrealized_pl_pct": -1.536,
+      "unrealized_pl": -45.075,
+      "unrealized_pl_pct": -2.091,
       "side": "long"
     },
     {
@@ -234,11 +234,11 @@
       "symbol": "AAPL270115C00250000",
       "qty": 4,
       "avg_entry": 48.55,
-      "current_price": 48.55,
-      "market_value": 19420.0,
+      "current_price": 49.2,
+      "market_value": 19680.0,
       "cost_basis": 19420.0,
-      "unrealized_pl": 0.0,
-      "unrealized_pl_pct": 0.0,
+      "unrealized_pl": 260.0,
+      "unrealized_pl_pct": 1.3390000000000002,
       "side": "long"
     },
     {
@@ -247,11 +247,11 @@
       "symbol": "AMZN270115C00185000",
       "qty": 2,
       "avg_entry": 45.05,
-      "current_price": 42.8,
-      "market_value": 8560.0,
+      "current_price": 42.65,
+      "market_value": 8530.0,
       "cost_basis": 9010.0,
-      "unrealized_pl": -450.0,
-      "unrealized_pl_pct": -4.994,
+      "unrealized_pl": -480.0,
+      "unrealized_pl_pct": -5.327,
       "side": "long"
     },
     {
@@ -260,11 +260,11 @@
       "symbol": "GOOGL270115C00290000",
       "qty": 2,
       "avg_entry": 65.6,
-      "current_price": 58.95,
-      "market_value": 11790.0,
+      "current_price": 57.4,
+      "market_value": 11480.0,
       "cost_basis": 13120.0,
-      "unrealized_pl": -1330.0,
-      "unrealized_pl_pct": -10.137,
+      "unrealized_pl": -1640.0,
+      "unrealized_pl_pct": -12.5,
       "side": "long"
     },
     {
@@ -273,11 +273,11 @@
       "symbol": "MSFT270115C00380000",
       "qty": 1,
       "avg_entry": 74.3,
-      "current_price": 64.4,
-      "market_value": 6440.0,
+      "current_price": 64.2,
+      "market_value": 6420.0,
       "cost_basis": 7430.0,
-      "unrealized_pl": -990.0,
-      "unrealized_pl_pct": -13.324,
+      "unrealized_pl": -1010.0,
+      "unrealized_pl_pct": -13.594000000000001,
       "side": "long"
     },
     {
@@ -286,11 +286,11 @@
       "symbol": "NVDA270115C00170000",
       "qty": 2,
       "avg_entry": 48.75,
-      "current_price": 46.9,
-      "market_value": 9380.0,
+      "current_price": 46.35,
+      "market_value": 9270.0,
       "cost_basis": 9750.0,
-      "unrealized_pl": -370.0,
-      "unrealized_pl_pct": -3.795,
+      "unrealized_pl": -480.0,
+      "unrealized_pl_pct": -4.923,
       "side": "long"
     }
   ],
